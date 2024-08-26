@@ -1,0 +1,42 @@
+package Assignments;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Assignment7_S13 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//print number of rows on 'web table example' 
+		//print number of columns on 'web table example' 
+		//print second row of data
+		
+		System.setProperty("webdriver.gecko.driver", "/Users/dominickdufner/Coding/eclipse-workspace/geckodriver");
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		
+		//for rows, check number of 'tr' tags in table/tbody
+		//for columns, check number of 'td' tags in 'tr' tag in table/tbody
+		///<table id="product" name="courses" class="table-display" xpath="1" border="1">
+		List<WebElement> numberOfColumns = driver.findElements(By.xpath("//table[@name='courses']//tr/th"));
+		List<WebElement> numberOfCells = driver.findElements(By.xpath("//table[@name='courses']//tr/td"));
+		List<WebElement> numberOfRows = driver.findElements(By.xpath("//table[@name='courses']//tr"));
+		
+		int numberOfRowsForReal = (numberOfCells.size()) /numberOfColumns.size();
+		
+		System.out.println("headers: "+numberOfColumns.size());
+		System.out.println("cells: "+numberOfCells.size());
+		System.out.println("rows: "+numberOfRowsForReal);
+
+
+		
+		System.out.println("===TEST COMPLETED===");
+	}
+
+}

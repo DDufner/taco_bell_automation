@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;selectOption&apos; in &apos;Assignments.Assignment_6_S12.main(...)&apos; to &apos;selectDropdownOption&apos;&#x0A;- Original project: &apos;IntroProject&apos;&#x0A;- Original element: &apos;Assignments.Assignment_6_S12.main(String[]).selectOption&apos;&#x0A;- Renamed element: &apos;selectOption&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;selectOption&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;Assignments{Assignment_6_S12.java[Assignment_6_S12~main~\[QString;@selectOption!921!963!928!939!QSelect;!0!false" name="selectDropdownOption" references="true" stamp="1620509117357" version="1.0"/>
+</session>

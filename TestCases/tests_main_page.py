@@ -32,6 +32,18 @@ class Test_001_Main_Page:
             assert True
         else: 
             assert False
+    
+    def test_delivery_navigation(self,driver_setup):
+        self.driver = driver_setup
+        self.driver.get(self.baseURL)
+        self.mainPage = MainPage(self.driver)
+        self.driver.maximize_window()
+        self.mainPage.clickDeliveryTab()
+        actual_url = self.driver.current_url
+        if actual_url =="https://www.tacobell.com/delivery":
+            assert True
+        else: 
+            assert False
 
 #    setLocation function not working, 'change' link is bad
 #    def test_set_location(self, driver_setup):

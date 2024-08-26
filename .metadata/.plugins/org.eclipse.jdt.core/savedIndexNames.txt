@@ -1,0 +1,16 @@
+INDEX VERSION 1.131+/Users/dominickdufner/Coding/.metadata/.plugins/org.eclipse.jdt.core
+4153714798.index
+4039776130.index
+3898763751.index
+88687963.index
+1632412343.index
+2921084910.index
+2498849779.index
+3172344790.index
+88811027.index
+977805608.index
+22941633.index
+309750957.index
+1335260559.index
+770440020.index
+1107002597.index
