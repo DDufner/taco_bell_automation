@@ -37,11 +37,15 @@ class MainPage:
     cart_icon_xpath ="//div[@class='styles_flex-section__2GgT-']//div[@class='full-toolbar_cart-container__3bia5']"
 
     #links at bottom
+    about_us_link_xpath = "//a[contains(text(),'About Us')]"
+    continue_us_link_xpath = "//a[contains(text(),'Contact Us')]"
+    FAQS_link_xpath = "//a[contains(text(),'FAQS')]"
+
 
     #needs to be confirmed
     email_field_xpath = "//input[@type='email']"
-    cart_icon_xpath ="//div[@class='styles_flex-section__2GgT-']//div[@class='full-toolbar_cart-container__3bia5']"
-    change_location_link_xpath = "//div[@class='styles_flex-section__2GgT-']//div[@class='styles_change-link__k7YyB'][contains(text(),'Change')]"
+    cart_icon_xpath = "//div[@class='styles_flex-section__2GgT-']//div[@class='full-toolbar_cart-container__3bia5']"
+    change_location_link_xpath = "//div[@class='styles_flex-section__2GgT-']//div//div[@class='styles_change-link__k7YyB'][contains(text(),'Change')]"
     
     def __init__(self, driver): #constructor that invokes objects for main page class.  
         self.driver=driver
@@ -57,8 +61,6 @@ class MainPage:
             self.driver.find_element(By.XPATH, value=self.start_your_order_button_xpath).click()
             self.driver.find_element(By.XPATH, value=self.location_search_field_xpath).send_keys(location)
             self.driver.find_element(By.XPATH, value=self.location_search_xbutton_xpath).click()
-            time.sleep(5)
-            print("does this hit?")
     
     def searchForItem(self,searchTerm):
         self.driver.find_element(By.XPATH, value=self.search_field_xpath).send_keys(searchTerm)
@@ -69,8 +71,20 @@ class MainPage:
         self.driver.find_element(By.XPATH, value=self.location_search_xbutton_xpath).click()
 
     def clickMenuTab(self):
-        #time.sleep(2)  - need to confirm this works w/o sleep
         self.driver.find_element(By.XPATH, value=self.menu_tab_xpath).click()
 
-    
+    def clickLocationsTab(self):
+        self.driver.find_element(By.XPATH, value=self.locations_tab_xpath).click()
+
+    def clickDeliveryTab(self):
+        self.driver.find_element(By.XPATH, value=self.delivery_tab_xpath).click()
         
+    def clickRewardsTab(self):
+        self.driver.find_element(By.XPATH, value=self.rewards_tab_xpath).click() 
+
+    def clickNutritionTab(self):
+        self.driver.find_element(By.XPATH, value=self.nutrition_tab_xpath).click()
+
+    def clickGiftCardsTab(self):
+        self.driver.find_element(By.XPATH, value=self.gift_cards_tab_xpath).click()
+    
