@@ -3,5 +3,5 @@ import pytest
 
 @pytest.fixture()
 def driver_setup():
-    driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
     return driver

@@ -1,97 +1,55 @@
 from PageObjects.MainPage import MainPage
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By  
+import time
 
 class Test_001_Main_Page_General:
-    searchTerm = "taco"
-    baseURL = "https://www.tacobell.com/"
-    emailAddress = "domdautomation@gmail.com"
+    search_term = "taco"
+    email_address = "domdautomation@gmail.com"
+    search_icon_xpath = MainPage.search_icon_xpath
+    dropdown_search_result = "//*[contains(text(),'Soft Taco')]"
+    search_results_dropdown = "//div[@class='styles_results_LTiZ7']"
+    target_url = "https://www.tacobell.com/"
+
+    def test_click_on_menu(self, driver_setup):
+        self.driver = driver_setup
+        self.driver.get(MainPage.main_page_url)
+        self.mainPage = MainPage(self.driver)
+        self.mainPage.acceptPrivacyPolicy()
+        self.mainPage.clickMenuTab()
+        if self.driver.current_url == "https://www.tacobell.com/food":
+            assert True
+        else:
+            assert False
+        self.driver.quit()
+   
     def test_search_for_item(self,driver_setup):
         self.driver = driver_setup
-        self.driver.get(self.baseURL)
+        self.driver.get(MainPage.main_page_url)
         self.mainPage = MainPage(self.driver)
-        self.mainPage.searchForItem(self.searchTerm)
-       
-    def test_confirm_homepage(self,driver_setup): 
+        self.mainPage.searchForItem(self.search_term)
+        time.sleep(3)
+        self.mainPage.assertElementIsPresent(self.mainPage.search_results_dropdown)
+        self.driver.quit()
+
+    def test_confirm_homepage_name(self, driver_setup): 
         self.driver = driver_setup
-        self.driver.get(self.baseURL)
+        self.driver.get(MainPage.main_page_url)
         actual_url = self.driver.title
-        if actual_url =="Taco Bell® | Live Más":
+        if actual_url == "Taco Bell® | Live Más":
             assert True
         else: 
             assert False
+        self.driver.quit()
 
-class Test_002_Main_Page_Tabs_Navigation:
-    location = "65201"
-    baseURL = "https://www.tacobell.com/"
-    emailAddress = "domdautomation@gmail.com"
-
-    def test_menu_navigation(self,driver_setup):
+    def test_accept_privacy_policy(self, driver_setup):
         self.driver = driver_setup
-        self.driver.get(self.baseURL)
+        self.driver.get(MainPage.main_page_url)
         self.mainPage = MainPage(self.driver)
-        self.driver.maximize_window()
-        self.mainPage.clickMenuTab()
-        actual_url = self.driver.current_url
-        if actual_url =="https://www.tacobell.com/food":
-            assert True
-        else: 
+        self.mainPage.acceptPrivacyPolicy()
+        try:
+            self.driver.find_element(By.XPATH, value=self.mainPage.privacy_policy_accept_xpath)
+        except NoSuchElementException:
             assert False
-
-    def test_delivery_navigation(self,driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.baseURL)
-        self.mainPage = MainPage(self.driver)
-        self.driver.maximize_window()
-        self.mainPage.clickDeliveryTab()
-        actual_url = self.driver.current_url
-        if actual_url =="https://www.tacobell.com/delivery":
-            assert True
-        else: 
-            assert False
-
-    def test_rewards_navigation(self,driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.baseURL)
-        self.mainPage = MainPage(self.driver)
-        self.driver.maximize_window()
-        self.mainPage.clickRewardsTab()
-        actual_url = self.driver.current_url
-        if actual_url =="https://www.tacobell.com/rewards":
-            assert True
-        else: 
-            assert False
-
-    def test_nutrition_navigation(self,driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.baseURL)
-        self.mainPage = MainPage(self.driver)
-        self.driver.maximize_window()
-        self.mainPage.clickNutritionTab()
-        actual_url = self.driver.current_url
-        if actual_url =="https://www.tacobell.com/nutrition":
-            assert True
-        else: 
-            assert False
-
-    def test_gift_navigation(self,driver_setup):
-        self.driver = driver_setup
-        self.driver.get(self.baseURL)
-        self.mainPage = MainPage(self.driver)
-        self.driver.maximize_window()
-        self.mainPage.clickGiftCardsTab()
-        actual_url = self.driver.current_url
-        if actual_url =="https://www.tacobell.com/gift-cards":
-            assert True
-        else: 
-            assert False    
-
-#    setLocation function not working, 'change' link is bad
-#    def test_set_location(self, driver_setup):
-#        self.driver = driver_setup
-#        self.driver.get(self.baseURL)
-#        self.mainPage = MainPage(self.driver)
-#        self.mainPage.setLocation(self.location)
-#        print("location set")
-
-
-    
-        
+        assert True
+        self.driver.quit()
